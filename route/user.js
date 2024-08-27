@@ -1,6 +1,7 @@
 import express from "express";
 import {
   getUser,
+  loginUser,
   singleuser,
   userCreate,
   userDelete,
@@ -15,7 +16,7 @@ router.post("/", userCreate);
 // R-Read
 router.get("/", getUser);
 
-router.get("/:username/:password", singleuser);
+router.post("/login", loginUser);
 
 // U-Update
 router.put("/:id", userUpdate);

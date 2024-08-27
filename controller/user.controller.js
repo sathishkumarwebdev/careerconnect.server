@@ -43,7 +43,28 @@ export const singleuser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+export const loginUser = async (req, res) => {
+  try {
+    const { emailaddress, password } = req.body;
 
+    const userLogin =await User.findOne({ emailaddress });
+    if (userLogin) {
+      if (password === userLogin.password) {
+        res.send({ message: "login sucess", userLogin: userLogin });
+      } else {
+        console.log(password);
+        console.log(userLogin.password);
+        
+        
+        res.send({ message: "wrong credentials" });
+      }
+    } else {
+      res.send("not register");
+    }
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 export const userUpdate = async (req, res) => {
   try {
     const result = await User.findByIdAndUpdate(
