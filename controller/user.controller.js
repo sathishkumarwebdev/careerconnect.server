@@ -50,7 +50,7 @@ export const loginUser = async (req, res) => {
     const userLogin =await User.findOne({ emailaddress });
     if (userLogin) {
       if (password === userLogin.password) {
-        res.send({ message: "login sucess", userLogin: userLogin });
+        res.status(200).send({ message: "login sucess", userLogin: userLogin });
       } else {
         console.log(password);
         console.log(userLogin.password);
